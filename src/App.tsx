@@ -1,8 +1,10 @@
-import Title from './page/Title'
+import Title from '@/page/Title'
+import Cover from '@/page/Cover'
 
 function App() {
   return (
-    <main className="flex h-dvh justify-center items-center">
+    <main className="flex flex-col h-dvh justify-start items-center p-8 gap-4">
+      <Cover />
       <Title />
     </main>
   )
