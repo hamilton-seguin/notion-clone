@@ -1,1 +1,13 @@
 @import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-light-bg: #fcfbfa;
+  --color-light-text: oklch(0.21 0.034 264.665);
+  --color-light-border: oklch(0.92 0.004 286.32);
+
+  --color-dark-bg: #333;
+  --color-dark-text: #eaeaea;
+  --color-dark-border: #6f6f6f;
+}
