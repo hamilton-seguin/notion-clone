@@ -17,12 +17,12 @@ export default function Cover() {
       <img
         src="./notion-clone-cover.png"
         alt="cover"
-        className="w-full max-h-80 object-cover"
+        className="w-full max-h-80 object-cover peer"
         fetchPriority="high"
       />
       <button
         type="button"
-        className="absolute bottom-5 right-24 p-1.5 border-2 rounded text-light-border hover:text-dark-border dark:text-dark-border dark:hover:text-light-border font-bold cursor-pointer z-10"
+        className="absolute bottom-5 right-24 p-1.5 border-2 rounded opacity-0 peer-hover:opacity-100 hover:opacity-100 text-light-text/80 hover:text-light-text/60 dark:text-light-border/80 dark:hover:text-light-border font-bold cursor-pointer"
         onClick={onChangeCoverImage}
       >
         change cover
