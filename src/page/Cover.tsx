@@ -1,6 +1,6 @@
 import { useRef, ChangeEventHandler } from 'react'
 
-export default function Cover() {
+export const Cover = () => {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const onChangeCoverImage = () => {
