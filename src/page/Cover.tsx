@@ -13,18 +13,19 @@ export default function Cover() {
   }
 
   return (
-    <div className="relative flex justify-center items-center h-80 border-[#eaeaea] border-b-2">
+    <div className="relative flex justify-center items-center h-80 border-light-border dark:border-dark-border border-b-2">
       <img
         src="./notion-clone-cover.png"
         alt="cover"
         className="w-full max-h-80 object-cover"
+        fetchPriority="high"
       />
       <button
         type="button"
-        className="absolute bottom-5 right-24 p-1.5 bg-white border-2 rounded text-[#eaeaea] hover:text-[#6f6F6F] font-bold cursor-pointer z-10"
+        className="absolute bottom-5 right-24 p-1.5 border-2 rounded text-light-border hover:text-dark-border dark:text-dark-border dark:hover:text-light-border font-bold cursor-pointer z-10"
         onClick={onChangeCoverImage}
       >
-        Change cover
+        change cover
       </button>
       <input
         onChange={onCoverImageUpload}
