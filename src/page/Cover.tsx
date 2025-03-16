@@ -14,10 +14,14 @@ export default function Cover() {
 
   return (
     <div className="relative flex justify-center items-center h-80 border-[#eaeaea] border-b-2">
-      <img src="./notion-clone-cover.png" alt="cover"/>
+      <img
+        src="./notion-clone-cover.png"
+        alt="cover"
+        className="w-full max-h-80 object-cover"
+      />
       <button
         type="button"
-        className="absolute bottom-5 right-24 p-1.5 opacity-0 bg-white border-2 rounded text-[#6f6F6F] font-bold cursor-pointer"
+        className="absolute bottom-5 right-24 p-1.5 bg-white border-2 rounded text-[#eaeaea] hover:text-[#6f6F6F] font-bold cursor-pointer z-10"
         onClick={onChangeCoverImage}
       >
         Change cover
