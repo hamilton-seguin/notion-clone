@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid'
 
 import { Cover, Spacer, Title } from '@/page'
-import { BasicNode } from '@/nodes'
+import { NodeTypeSwitcher } from '@/nodes'
 
 import { useFocusedNodeIndex, useAppState } from '@/hooks'
 
@@ -12,10 +12,10 @@ export const Page = () => {
   return (
     <>
       <Cover />
-      <div className="flex flex-col items-center justify-start w-full">
+      <div className="flex flex-col items-center justify-start w-full gap-1 pl-12">
         <Title title={title} changePageTitle={setTitle} addNode={addNode} />
         {nodes.map((node, index) => (
-          <BasicNode
+          <NodeTypeSwitcher
             key={node.id}
             node={node}
             updateFocusedIndex={setFocusedNodeIndex}
