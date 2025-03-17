@@ -15,8 +15,8 @@ export const CommandPanel = ({
   return (
     <div
       ref={ref}
-      className={`absolute z-10 -bottom-2.5 left-16 bg-light-bg w-48 p-1.5 transform rounded shadow-lg dark:bg-dark-bg ${
-        overflows ? '-translate-y-12' : 'translate-y-full'
+      className={`absolute z-10 -bottom-4 left-2 bg-orange-50 w-48 p-1.5 transform rounded shadow-lg dark:bg-zinc-700 ${
+        overflows ? '-translate-y-16' : 'translate-y-full'
       }`}
     >
       <div className="font-bold p-3">Blocks</div>
@@ -27,8 +27,8 @@ export const CommandPanel = ({
             <li
               key={type.value}
               onClick={() => selectItem(type.value)}
-              className={`p-3 cursor-pointer rounded hover:bg-orange-200 dark:hover:bg-slate-800 ${
-                selected ? 'bg-orange-300 dark:bg-slate-700' : ''
+              className={`p-3 cursor-pointer rounded hover:bg-orange-200 dark:hover:bg-zinc-500 ${
+                selected ? 'bg-orange-300 dark:bg-zinc-600' : ''
               }`}
             >
               {type.name}
