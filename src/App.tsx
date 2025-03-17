@@ -9,7 +9,7 @@ const initialState = createPage()
 function App() {
   return (
     <AppStateProvider initialState={initialState}>
-      <main className="flex flex-col p-4 h-dvh bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text">
+      <main className="flex flex-col p-4 h-vh">
         <ThemeToggle />
         <div className="flex flex-col gap-4 justify-start items-center">
           <Page />

@@ -32,7 +32,7 @@ export const Title = ({
     <div className="px-10 max-w-4xl">
       <h1
         ref={headerRef}
-        className="p-6 text-3xl focus:outline-none"
+        className="p-6 text-4xl focus:outline-none"
         contentEditable
         suppressContentEditableWarning
         onInput={(e) => changePageTitle(e.currentTarget.textContent || '')}

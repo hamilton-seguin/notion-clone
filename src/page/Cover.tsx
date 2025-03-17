@@ -22,7 +22,7 @@ export const Cover = () => {
       />
       <button
         type="button"
-        className="absolute bottom-5 right-24 p-1.5 border-2 rounded opacity-0 peer-hover:opacity-100 hover:opacity-100 text-light-text/80 hover:text-light-text/60 dark:text-light-border/80 dark:hover:text-light-border font-bold cursor-pointer"
+        className="absolute bottom-5 right-24 p-1.5 border-2 rounded opacity-0 peer-hover:opacity-100 hover:opacity-100 text-light-text/80 hover:text-light-text/60 dark:text-dark-text/70 dark:hover:text-dark-text font-bold cursor-pointer"
         onClick={onChangeCoverImage}
       >
         change cover
