@@ -1,5 +1,5 @@
 import { Page } from '@/page'
-import ThemeToggle from '@/components/ThemeToggle'
+import { ThemeToggle } from '@/components'
 
 import { AppStateProvider } from '@/context'
 import { createPage } from '@/utils'
