@@ -6,6 +6,7 @@ import {
   useRef,
 } from 'react'
 
+import { useAppState } from '@/hooks'
 import { NodeData } from '@/types'
 
 export const BasicNode = ({
@@ -13,20 +14,16 @@ export const BasicNode = ({
   updateFocusedIndex,
   isFocused,
   index,
-  addNode,
-  removeNodeByIndex,
-  changeNodeValue,
 }: {
   node: NodeData
   updateFocusedIndex(index: number): void
   isFocused: boolean
   index: number
-  addNode(node: NodeData, index: number): void
-  removeNodeByIndex(index: number): void
-  changeNodeValue(index: number, value: string): void
 }) => {
   const nodeRef = useRef<HTMLDivElement>(null)
 
+  const { addNode, removeNodeByIndex, changeNodeValue } = useAppState()
+  
   useEffect(() => {
     if (isFocused) {
       nodeRef.current?.focus()
