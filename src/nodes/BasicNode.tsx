@@ -1,54 +1,71 @@
 import { nanoid } from 'nanoid'
-import {
-  FormEventHandler,
-  KeyboardEventHandler,
-  useEffect,
-  useRef,
-} from 'react'
+import { FormEventHandler, KeyboardEventHandler, useRef } from 'react'
 
-import { useAppState } from '@/hooks'
-import { NodeData } from '@/types'
+import { CommandPanel } from '@/components'
+
+import { SUPPORTED_NODE_TYPE } from '@/constants'
+import { useAppState, useNodeFocus, useCommandPanel } from '@/hooks'
+import { NodeProps, NodeType } from '@/types'
+import { getNodeStyle } from '@/utils'
 
 export const BasicNode = ({
   node,
   updateFocusedIndex,
   isFocused,
   index,
-}: {
-  node: NodeData
-  updateFocusedIndex(index: number): void
-  isFocused: boolean
-  index: number
-}) => {
+}: NodeProps) => {
   const nodeRef = useRef<HTMLDivElement>(null)
+  const showCommandPanel = isFocused && node?.value.startsWith('/')
 
-  const { addNode, removeNodeByIndex, changeNodeValue } = useAppState()
-  
-  useEffect(() => {
-    if (isFocused) {
-      nodeRef.current?.focus()
-    } else {
-      nodeRef.current?.blur()
-    }
-  }, [isFocused])
+  useNodeFocus(isFocused, nodeRef, node.value)
 
-  useEffect(() => {
-    if (nodeRef.current && !isFocused) {
-      nodeRef.current.textContent = node.value
-    }
-  }, [node])
+  const { addNode, removeNodeByIndex, changeNodeValue, changeNodeType } =
+    useAppState()
+  const { commandPanelIndex, setCommandPanelIndex } = useCommandPanel(
+    node.value,
+    showCommandPanel
+  )
 
-  const handleInput: FormEventHandler<HTMLDivElement> = ({ currentTarget }) => {
-    const { textContent } = currentTarget
-    changeNodeValue(index, textContent || '')
-  }
-
-  const handleClick = () => {
-    updateFocusedIndex(index)
+  const parseCommand = (nodeType: NodeType) => {
+    changeNodeType(index, nodeType)
+    changeNodeValue(index, '')
+    addNode({ id: nanoid(), type: node.type, value: '' }, index + 1)
+    updateFocusedIndex(index + 1)
   }
 
   const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (e) => {
     const target = e.target as HTMLDivElement
+    if (showCommandPanel && e.key === 'Escape') {
+      e.preventDefault()
+      changeNodeValue(index, '')
+      if (nodeRef.current) nodeRef.current.textContent = ''
+      return
+    }
+
+    if (
+      showCommandPanel &&
+      (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'Enter')
+    ) {
+      e.preventDefault()
+      if (e.key === 'ArrowUp') {
+        setCommandPanelIndex((prev) =>
+          prev === 0 ? SUPPORTED_NODE_TYPE.length - 1 : prev - 1
+        )
+      } else if (e.key === 'ArrowDown') {
+        setCommandPanelIndex((prev) =>
+          prev === SUPPORTED_NODE_TYPE.length - 1 ? 0 : prev + 1
+        )
+      } else if (e.key === 'Enter') {
+        const selectedCommand = SUPPORTED_NODE_TYPE[commandPanelIndex].value
+        changeNodeType(index, selectedCommand)
+        changeNodeValue(index, '')
+        if (nodeRef.current) {
+          nodeRef.current.textContent = ''
+        }
+      }
+      return
+    }
+
     if (e.key === 'Enter') {
       e.preventDefault()
       if (target.textContent?.[0] === '/') return
@@ -66,17 +83,40 @@ export const BasicNode = ({
         updateFocusedIndex(index)
       }
     }
+    if (e.key === 'Delete') {
+      if (target.textContent?.length === 0) {
+        e.preventDefault()
+        removeNodeByIndex(index)
+        updateFocusedIndex(index - 1)
+      }
+    }
+  }
+
+  const handleInput: FormEventHandler<HTMLDivElement> = ({ currentTarget }) => {
+    changeNodeValue(index, currentTarget.textContent || '')
   }
 
   return (
-    <div
-      ref={nodeRef}
-      onInput={handleInput}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      contentEditable
-      suppressContentEditableWarning
-      className="w-full rounded p-1.5 pl-12 cursor-text"
-    />
+    <div className='relative w-full'>
+      {showCommandPanel && (
+        <CommandPanel
+          selectedItemIndex={commandPanelIndex}
+          selectItem={(nodeType) => {
+            parseCommand(nodeType)
+          }}
+        />
+      )}
+      <div
+        ref={nodeRef}
+        onInput={handleInput}
+        onKeyDown={handleKeyDown}
+        onClick={() => updateFocusedIndex(index)}
+        contentEditable
+        suppressContentEditableWarning
+        className={`w-full rounded p-1.5 cursor-text ${getNodeStyle(
+          node.type
+        )}`}
+      />
+    </div>
   )
 }
