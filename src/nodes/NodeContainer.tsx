@@ -23,11 +23,11 @@ export const NodeContainer = ({
     <div
       ref={setNodeRef}
       style={style}
-      className="flex relative pl-4"
+      className="flex relative w-full justify-center items-center"
       {...attributes}
     >
       <div
-        className="p-1.5 cursor-grab font-bold opacity-0 transition-opacity hover:opacity-100"
+        className="p-1.5 cursor-grab focus:cursor-grabbing font-bold opacity-0 transition-opacity hover:opacity-100"
         {...listeners}
       >
         ⠿
