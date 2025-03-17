@@ -1,5 +1,6 @@
-import { Page } from '@/page'
-import { ThemeToggle } from '@/components'
+import { Route, Routes } from 'react-router'
+
+import { PageLayout } from '@/components'
 
 import { AppStateProvider } from '@/context'
 import { createPage } from '@/utils'
@@ -8,14 +9,25 @@ const initialState = createPage()
 
 function App() {
   return (
-    <AppStateProvider initialState={initialState}>
-      <main className="flex flex-col p-4 h-vh">
-        <ThemeToggle />
-        <div className="flex flex-col gap-4 justify-start items-center">
-          <Page />
-        </div>
-      </main>
-    </AppStateProvider>
+    <Routes>
+      <Route path="/auth" element={<div>Auth</div>} />
+      <Route
+        path="/:id"
+        element={
+          <AppStateProvider initialState={initialState}>
+            <PageLayout />
+          </AppStateProvider>
+        }
+      />
+      <Route
+        path="/"
+        element={
+          <AppStateProvider initialState={initialState}>
+            <PageLayout />
+          </AppStateProvider>
+        }
+      />
+    </Routes>
   )
 }
 
