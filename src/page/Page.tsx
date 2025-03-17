@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid'
 
-import { Cover, Spacer, Title, BasicNode } from '@/page'
+import { Cover, Spacer, Title } from '@/page'
+import { BasicNode } from '@/nodes'
 
 import { useFocusedNodeIndex, useAppState } from '@/hooks'
 
