@@ -1,3 +1,6 @@
 export * from "@/hooks/useFocusedNodeIndex"
 export * from "@/hooks/usePageState"
 export * from "@/hooks/useAppState"
+export * from "@/hooks/useOverflowsScreenBottom"
+export * from "@/hooks/useNodeFocus"
+export * from "@/hooks/useCommandPanel"
