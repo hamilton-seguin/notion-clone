@@ -1,3 +1,5 @@
+import { usePageState } from "@/hooks"
+
 export type NodeType =
   | 'text'
   | 'image'
@@ -20,3 +22,5 @@ export type Page = {
   nodes: NodeData[]
   cover: string
 }
+
+export type AppStateContextT = ReturnType<typeof usePageState>
