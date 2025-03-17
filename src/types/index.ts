@@ -15,6 +15,13 @@ export type NodeData = {
   value: string
 }
 
+export type NodeProps = {
+  node: NodeData
+  updateFocusedIndex(index: number): void
+  isFocused: boolean
+  index: number
+}
+
 export type Page = {
   id: string
   slug: string
@@ -24,3 +31,8 @@ export type Page = {
 }
 
 export type AppStateContextT = ReturnType<typeof usePageState>
+
+export type SupportedNodeType = {
+  value: NodeType
+  name: string
+}
