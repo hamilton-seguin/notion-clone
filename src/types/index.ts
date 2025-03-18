@@ -43,3 +43,8 @@ export type AuthSessionContextValue = {
   session: Session | null
   loading: boolean
 }
+
+export type ThemeContextType= {
+  theme: string
+  setTheme: (theme: string) => void
+}
