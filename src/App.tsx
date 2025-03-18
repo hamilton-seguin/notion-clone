@@ -4,7 +4,7 @@ import { PageLayout } from '@/components'
 
 import { AppStateProvider } from '@/context/provider'
 import { createPage } from '@/utils'
-import { Auth } from '@/auth'
+import { Auth, Private } from '@/auth'
 
 const initialState = createPage()
 
@@ -15,17 +15,25 @@ function App() {
       <Route
         path="/:id"
         element={
-          <AppStateProvider initialState={initialState}>
-            <PageLayout />
-          </AppStateProvider>
+          <Private
+            component={
+              <AppStateProvider initialState={initialState}>
+                <PageLayout />
+              </AppStateProvider>
+            }
+          />
         }
       />
       <Route
         path="/"
         element={
-          <AppStateProvider initialState={initialState}>
-            <PageLayout />
-          </AppStateProvider>
+          <Private
+            component={
+              <AppStateProvider initialState={initialState}>
+                <PageLayout />
+              </AppStateProvider>
+            }
+          />
         }
       />
     </Routes>
