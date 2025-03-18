@@ -1,5 +1,4 @@
-import { ThemeToggle } from '@/components'
-import { Page } from '@/page'
+import { ThemeToggle, Page } from '@/components'
 
 export const PageLayout = () => {
   return (
