@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid'
 import { DndContext, DragEndEvent, DragOverlay } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
-import { Cover, Spacer, Title } from '@/page'
+import { Cover, Spacer, Title } from '@/components'
 import { NodeContainer } from '@/nodes'
 
 import { useFocusedNodeIndex, useAppState } from '@/hooks'
