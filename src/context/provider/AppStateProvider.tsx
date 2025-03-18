@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 
-import { usePageState, AppStateContext } from '@/hooks'
+import { usePageState } from '@/hooks'
+import { AppStateContext } from '@/context'
 import { Page } from '@/types'
 
 export const AppStateProvider = ({

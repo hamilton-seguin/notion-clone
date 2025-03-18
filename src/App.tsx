@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router'
 
 import { PageLayout } from '@/components'
 
-import { AppStateProvider } from '@/context'
+import { AppStateProvider } from '@/context/provider'
 import { createPage } from '@/utils'
 import { Auth } from '@/auth'
 

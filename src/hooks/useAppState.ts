@@ -1,7 +1,5 @@
-import { useContext, createContext } from "react"
+import { useContext } from "react"
 
-import  { AppStateContextT } from "@/types"
-
-export const AppStateContext = createContext<AppStateContextT>({} as AppStateContextT)
+import { AppStateContext  } from '@/context'
 
 export const useAppState = () => useContext(AppStateContext)

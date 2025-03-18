@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Session } from '@supabase/supabase-js'
 import { supabase } from '@/supabaseClient'
 
-import { AuthSessionContext } from '@/context/AuthSessionContext'
+import { AuthSessionContext } from '@/context'
 
 export const AuthSessionProvider = ({
   children,
@@ -18,7 +18,7 @@ export const AuthSessionProvider = ({
       if (data.session) {
         setSession(data.session)
       } else {
-        console.error(error)
+        console.error('Failed to get session: ', data, error)
       }
     }
     auth()

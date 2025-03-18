@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 
-import { AuthSessionProvider } from '@/auth/AuthSessionProvider'
+import { AuthSessionProvider } from '@/context/provider'
 
 import App from './App.tsx'
 
