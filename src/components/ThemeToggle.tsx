@@ -1,24 +1,13 @@
-import { useState, useEffect, ChangeEvent } from 'react'
+import { ChangeEvent, useContext } from 'react'
+
+import { ThemeContext } from '@/context'
 
 export const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    setIsDark(mediaQuery.matches)
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsDark(e.matches)
-    }
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark')
-  }, [isDark])
+  const { theme, setTheme } = useContext(ThemeContext)
+  const isDark = theme === 'dark'
 
   const handleToggle = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsDark(e.target.checked)
+    setTheme(e.target.checked ? 'dark' : 'light')
   }
 
   return (
