@@ -4,13 +4,14 @@ import { PageLayout } from '@/components'
 
 import { AppStateProvider } from '@/context'
 import { createPage } from '@/utils'
+import { Auth } from '@/auth'
 
 const initialState = createPage()
 
 function App() {
   return (
     <Routes>
-      <Route path="/auth" element={<div>Auth</div>} />
+      <Route path="/auth" element={<Auth />} />
       <Route
         path="/:id"
         element={
