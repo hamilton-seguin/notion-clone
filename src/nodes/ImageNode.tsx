@@ -19,9 +19,6 @@ export const ImageNode = ({
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    const handleClick = () => {
-      fileInputRef.current?.click()
-    }
     const handleKeyDown = (e: KeyboardEvent) => {
       e.preventDefault()
       if (e.key === 'Backspace') {
@@ -33,13 +30,11 @@ export const ImageNode = ({
     }
     if (isFocused) {
       window.addEventListener('keydown', handleKeyDown)
-      window.addEventListener('click', handleClick)
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
-      window.removeEventListener('click', handleClick)
     }
-  }, [isFocused, index, node.value, removeNodeByIndex])
+  }, [isFocused, index, removeNodeByIndex])
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target
@@ -56,9 +51,14 @@ export const ImageNode = ({
     }
   }
 
+  const handleClick = () => {
+    fileInputRef.current?.click()
+  }
+
   return (
     <div
-      className={`cursor-pointer w-full ${isFocused ? 'opacity-80' : 'opacity-100'}`}
+    onClick={handleClick}
+      className={`cursor-pointer w-full ${isFocused ? 'opacity-80' : 'opacity-100 hover:opacity-80'}`}
     >
       <FileImage filePath={node.value} alt={node.value} />
       <input
