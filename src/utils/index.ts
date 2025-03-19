@@ -13,7 +13,6 @@ export const createPage = async () => {
   const page = {
     id: undefined,
     title: 'Untitled',
-    cover: './notion-clone-cover.png',
     slug,
     nodes: [],
     created_by: user.id,
