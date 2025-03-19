@@ -11,7 +11,7 @@ export const ThemeToggle = () => {
   }
 
   return (
-    <div className="flex justify-end items-center">
+    <div className="flex justify-end items-center pb-4">
       <label className="inline-flex items-center cursor-pointer relative">
         <input
           type="checkbox"
