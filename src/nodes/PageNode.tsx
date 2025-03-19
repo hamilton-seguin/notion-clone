@@ -57,8 +57,12 @@ export const PageNode = ({
     navigate(`/${node.value}`)
   }
   return (
-    <div onClick={navigateToPage} className="cursor-pointer font-bold">
-      📄 {pageTile}
+    <div
+      onClick={navigateToPage}
+      className="cursor-pointer font-semibold w-full ml-4 p-1.5"
+    >
+      <span className="mr-2">{`📄 -`}</span>
+      <span className="underline">{pageTile}</span>
     </div>
   )
 }
