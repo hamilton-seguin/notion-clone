@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Session } from '@supabase/supabase-js'
-import { supabase } from '@/supabaseClient'
 
+import { supabase } from '@/supabaseClient'
 import { AuthSessionContext } from '@/context'
 
 export const AuthSessionProvider = ({
@@ -15,17 +15,22 @@ export const AuthSessionProvider = ({
   useEffect(() => {
     const auth = async () => {
       const { data, error } = await supabase.auth.getSession()
-      if (data.session) {
-        setSession(data.session)
-      } else {
-        console.error('Failed to get session: ', data, error)
+      if (error) {
+        console.error('Failed to get session: ', error)
       }
+      setSession(data.session)
+      setLoading(false)
     }
     auth()
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-      setLoading(false)
-    })
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session)
+        setLoading(false)
+      }
+    )
+    return () => {
+      authListener.subscription.unsubscribe()
+    }
   }, [])
 
   return (
