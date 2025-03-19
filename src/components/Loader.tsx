@@ -1,6 +1,6 @@
 export const Loader = () => {
   return (
-    <div className="flex relative w-full h-lvh items-center justify-center text-3xl font-medium text-light-text dark:text-dark-text gap-6">
+    <div className="flex relative w-full h-96 items-center justify-center text-3xl font-medium text-light-text dark:text-dark-text gap-6">
       Loading...
       <svg
         className="mr-3 -ml-1 size-8 animate-spin text-light-text dark:text-dark-text"

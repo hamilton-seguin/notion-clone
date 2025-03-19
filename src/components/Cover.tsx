@@ -26,7 +26,7 @@ export const Cover = ({
   }
 
   return (
-    <div className="relative flex justify-center items-center h-80 border-light-border dark:border-dark-border border-b-2">
+    <div className="relative flex justify-center items-center h-80 border-light-border dark:border-dark-border border-b-2 w-full">
       {filePath ? (
         <FileImage
           filePath={filePath}

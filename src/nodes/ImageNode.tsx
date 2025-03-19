@@ -58,7 +58,7 @@ export const ImageNode = ({
 
   return (
     <div
-      className={`cursor-pointer ${isFocused ? 'opacity-80' : 'opacity-100'}`}
+      className={`cursor-pointer w-full ${isFocused ? 'opacity-80' : 'opacity-100'}`}
     >
       <FileImage filePath={node.value} alt={node.value} />
       <input

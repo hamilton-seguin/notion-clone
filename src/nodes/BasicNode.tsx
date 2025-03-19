@@ -97,7 +97,7 @@ export const BasicNode = ({
   }
 
   return (
-    <div className='relative w-full ml-4'>
+    <div className='relative ml-4 w-full max-w-[90%]'>
       {showCommandPanel && (
         <CommandPanel
           selectedItemIndex={commandPanelIndex}
@@ -113,7 +113,7 @@ export const BasicNode = ({
         onClick={() => updateFocusedIndex(index)}
         contentEditable
         suppressContentEditableWarning
-        className={`w-full rounded p-1.5 cursor-text ${getNodeStyle(
+        className={`rounded p-1.5 cursor-text ${getNodeStyle(
           node.type
         )}`}
       />

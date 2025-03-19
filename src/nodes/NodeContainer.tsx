@@ -23,7 +23,7 @@ export const NodeContainer = ({
     <div
       ref={setNodeRef}
       style={style}
-      className="flex relative w-full justify-center items-center"
+      className="flex relative w-full justify-start items-center"
       {...attributes}
     >
       <div
