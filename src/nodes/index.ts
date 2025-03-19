@@ -1,3 +1,5 @@
 export * from '@/nodes/BasicNode'
 export * from '@/nodes/NodeTypeSwitcher'
 export * from '@/nodes/NodeContainer'
+export * from '@/nodes/PageNode'
+export * from '@/nodes/ImageNode'
