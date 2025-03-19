@@ -1,10 +1,11 @@
 import { arrayMove } from '@dnd-kit/sortable'
-import { useImmer } from 'use-immer'
 
+import { useSyncedState } from '@/hooks'
 import { NodeData, NodeType, Page } from '@/types'
+import { updatePage } from '@/utils'
 
 export const usePageState = (initialState: Page) => {
-  const [page, setPage] = useImmer<Page>(initialState)
+  const [page, setPage] = useSyncedState(initialState, updatePage)
 
   const addNode = (node: NodeData, index: number) => {
     setPage((draft) => {
@@ -51,8 +52,8 @@ export const usePageState = (initialState: Page) => {
 
   const reorderNodes = (oldIndex: string, newIndex: string) => {
     setPage((draft) => {
-      const index1 = draft.nodes.findIndex(node => node.id === oldIndex)
-      const index2 = draft.nodes.findIndex(node => node.id === newIndex)
+      const index1 = draft.nodes.findIndex((node) => node.id === oldIndex)
+      const index2 = draft.nodes.findIndex((node) => node.id === newIndex)
       draft.nodes = arrayMove(draft.nodes, index1, index2)
     })
   }
