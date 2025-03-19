@@ -48,8 +48,6 @@ export function withInitialState<TProps>(
               })
               .select()
               .single()
-            console.log('result of insert: ', result)
-
             setInitialState(result?.data)
           } else {
             setInitialState(data)
