@@ -33,14 +33,11 @@ export function withInitialState<TProps>(
           if (!user) {
             throw new Error('User is not logged in')
           }
-          const { data, error } = await supabase
+          const { data } = await supabase
             .from('pages')
             .select('title, id, cover, nodes, slug')
             .match({ slug: pageSlug, created_by: user.id })
             .single()
-          console.log('data of select: ', data)
-          console.log('error of select: ', error)
-
           if (!data && pageSlug === 'start') {
             const result = await supabase
               .from('pages')
