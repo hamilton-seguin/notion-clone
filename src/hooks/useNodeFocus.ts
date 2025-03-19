@@ -6,12 +6,15 @@ export const useNodeFocus = (
   nodeValue: string
 ) => {
   useEffect(() => {
+    if (nodeRef.current && document.activeElement !== nodeRef.current) {
+      nodeRef.current.textContent = nodeValue
+    }
     if (isFocused) {
       nodeRef.current?.focus()
     } else {
       nodeRef.current?.blur()
     }
-  }, [isFocused, nodeRef])
+  }, [isFocused, nodeRef, nodeValue])
 
   useEffect(() => {
     if (nodeRef.current && !isFocused) {
