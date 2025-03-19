@@ -2,7 +2,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 
 import { useSyncedState } from '@/hooks'
 import { NodeData, NodeType, Page } from '@/types'
-import { updatePage } from '@/utils'
+import { updatePage, createPage } from '@/utils'
 
 export const usePageState = (initialState: Page) => {
   const [page, setPage] = useSyncedState(initialState, updatePage)
@@ -25,11 +25,21 @@ export const usePageState = (initialState: Page) => {
     })
   }
 
-  const changeNodeType = (nodeIndex: number, type: NodeType) => {
-    setPage((draft) => {
-      draft.nodes[nodeIndex].type = type
-      draft.nodes[nodeIndex].value = ''
-    })
+  const changeNodeType = async (nodeIndex: number, type: NodeType) => {
+    if (type === 'page') {
+      const newPage = await createPage()
+      if (newPage) {
+        setPage((draft) => {
+          draft.nodes[nodeIndex].type = type
+          draft.nodes[nodeIndex].value = newPage.slug
+        })
+      }
+    } else {
+      setPage((draft) => {
+        draft.nodes[nodeIndex].type = type
+        draft.nodes[nodeIndex].value = ''
+      })
+    }
   }
 
   const setNodes = (nodes: NodeData[]) => {
