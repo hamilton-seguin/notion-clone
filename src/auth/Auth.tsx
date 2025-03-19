@@ -6,6 +6,11 @@ import { Loader } from '@/components'
 import { supabase } from '@/supabaseClient'
 import { useAuthSession } from '@/hooks'
 
+const redirectUrl =
+  process.env.NODE_ENV === 'development'
+    ? import.meta.env.VITE_SUPABASE_DEV_URL
+    : import.meta.env.VITE_SUPABASE_PROD_URL
+
 export const Auth = () => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
@@ -23,8 +28,8 @@ export const Auth = () => {
       const { data, error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: 'http://localhost:5173/',
-        }
+          emailRedirectTo: redirectUrl,
+        },
       })
       if (error) throw new Error(`Failed to send magic link: ${error}`)
       if (data) alert('Magic link sent: check your emails')
