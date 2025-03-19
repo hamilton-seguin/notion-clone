@@ -8,7 +8,8 @@ import { NodeContainer } from '@/nodes'
 import { useFocusedNodeIndex, useAppState } from '@/hooks'
 
 export const Page = () => {
-  const { title, nodes, setTitle, addNode, reorderNodes } = useAppState()
+  const { title, nodes, setTitle, addNode, reorderNodes, cover, setCover } =
+    useAppState()
   const [focusedNodeIndex, setFocusedNodeIndex] = useFocusedNodeIndex({ nodes })
 
   const handleDragEvent = (event: DragEndEvent) => {
@@ -17,9 +18,15 @@ export const Page = () => {
       reorderNodes(active.id as string, over.id as string)
     }
   }
+
+  const handleClickSpacer = () => {
+    addNode({ type: 'text', value: '', id: nanoid() }, nodes.length)
+    setFocusedNodeIndex(nodes.length)
+  }
+
   return (
     <>
-      <Cover />
+      <Cover filePath={cover} changePageCover={setCover} />
       <div className="flex flex-col items-center justify-start w-full gap-1 pl-12">
         <Title title={title} changePageTitle={setTitle} addNode={addNode} />
         <DndContext onDragEnd={handleDragEvent}>
@@ -38,9 +45,7 @@ export const Page = () => {
         </DndContext>
         <Spacer
           showHint={!nodes.length}
-          handleClick={() => {
-            addNode({ type: 'text', value: '', id: nanoid() }, nodes.length)
-          }}
+          handleClick={handleClickSpacer}
         />
       </div>
     </>
