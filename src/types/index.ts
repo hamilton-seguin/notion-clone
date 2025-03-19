@@ -44,7 +44,24 @@ export type AuthSessionContextValue = {
   loading: boolean
 }
 
-export type ThemeContextType= {
+export type ThemeContextType = {
   theme: string
   setTheme: (theme: string) => void
 }
+
+//debounce type
+// eslint-disable-next-line
+export type ArgumentTypes<F extends Function> = F extends (
+  ...args: infer A
+) => any // eslint-disable-line
+  ? A
+  : never
+
+export type InjectedProps = {
+  initialState: Page
+}
+
+export type PropsWithoutInjected<TBaseProps> = Omit<
+  TBaseProps,
+  keyof InjectedProps
+>
