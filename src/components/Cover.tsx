@@ -17,7 +17,9 @@ export const Cover = ({
     fileInputRef.current?.click()
   }
 
-  const onCoverImageUpload: ChangeEventHandler<HTMLInputElement> = async (event) => {
+  const onCoverImageUpload: ChangeEventHandler<HTMLInputElement> = async (
+    event
+  ) => {
     const target = event.target
     const result = await uploadImage(target?.files?.[0])
     if (result?.filePath) {
@@ -26,18 +28,24 @@ export const Cover = ({
   }
 
   return (
-    <div className="relative flex justify-center items-center h-80 border-light-border dark:border-dark-border border-b-2 w-full">
+    <div
+      className="relative flex justify-center items-center 2xl:h-96 h-80 border-light-border dark:border-dark-border border-b-2 w-full"
+
+    >
       {filePath ? (
         <FileImage
           filePath={filePath}
-          className="w-full max-h-80 object-cover peer"
+          className="w-full max-w-7xl 2xl:max-h-96 h-80 object-cover peer 2xl:pb-0 pb-4"
+          fetchPriority="high"
+          draggable="false"
         />
       ) : (
         <img
           src="./notion-clone-cover.png"
           alt="cover"
-          className="w-full max-h-80 object-cover peer"
+          className="w-full max-w-7xl 2xl:max-h-96 h-80 object-cover peer 2xl:pb-0 pb-4"
           fetchPriority="high"
+          draggable="false"
         />
       )}
 
