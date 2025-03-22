@@ -6,3 +6,4 @@ export * from "@/hooks/useNodeFocus"
 export * from "@/hooks/useCommandPanel"
 export * from "@/hooks/useAuthSession"
 export * from "@/hooks/useSyncedState"
+export * from '@/hooks/usePagesList'
