@@ -18,8 +18,8 @@ export const ThemeToggle = () => {
         checked={isDark}
         className="sr-only peer"
       />
-      <div className="w-14 h-8 rounded-full peer bg-light-border/70 hover:bg-light-border peer-hover:bg-light-border dark:bg-dark-border/80 hover:dark:bg-dark-border peer-hover:dark:bg-dark-border" />
-      <div className="absolute top-1 left-1 h-6 w-6 rounded-full bg-light-bg dark:bg-light-border flex items-center justify-center transform transition-transform duration-300 peer-checked:translate-x-6 peer">
+      <div className="w-14 h-8 rounded-full peer bg-dark-bg hover:bg-dark-bg/80 dark:bg-light-bg  hover:dark:bg-light-bg/90  peer-hover:bg-dark-bg  peer-hover:dark:bg-light-bg/90" />
+      <div className="absolute top-1 left-1 h-6 w-6 rounded-full bg-light-bg dark:bg-dark-bg flex items-center justify-center transform transition-transform duration-300 peer-checked:translate-x-6 peer">
         {isDark ? (
           <img src="./moon.svg" alt="Dark mode" className="h-4.5 w-4.5" />
         ) : (
@@ -32,3 +32,6 @@ export const ThemeToggle = () => {
     </label>
   )
 }
+// bg-dark-bg/80 hover:bg-dark-bg dark:bg-light-bg  hover:dark:bg-light-bg/80 
+// bg-light-border/70 hover:bg-light-border peer-hover:bg-light-border dark:bg-dark-border/80 hover:dark:bg-dark-border peer-hover:dark:bg-dark-border
+// bg-light-bg dark:bg-light-border
